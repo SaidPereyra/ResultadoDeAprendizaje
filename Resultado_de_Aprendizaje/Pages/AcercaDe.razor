@@ -1,0 +1,36 @@
+﻿@page "/acercade"
+@inject HttpClient Http
+
+<h3>Acerca De UTEQ</h3>
+
+@if (info == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <br />
+    <p><b>Nombre: </b>@info[0].nombre</p>
+    <p><b>Dirección: </b>@info[0].direccion</p>
+    <p><b>Teléfono: </b>@info[0].telefono</p>
+}
+<br />
+<a class="btn btn-primary" href="">Regresar a inicio</a>
+
+@code {
+    private infoUteq[] info;
+
+    protected override async Task OnInitializedAsync()
+    {
+        info = await Http.GetFromJsonAsync<infoUteq[]>("sample-data/infoUteq.json");
+    }
+
+    public class infoUteq
+    {
+        public string nombre { get; set; }
+
+        public string direccion { get; set; }
+
+        public string telefono { get; set; }
+    }
+}

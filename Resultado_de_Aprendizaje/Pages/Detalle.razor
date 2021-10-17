@@ -1,0 +1,61 @@
+﻿@page "/detalle/{id}"
+@inject HttpClient Http
+@inject NavigationManager nav
+
+<h1>Detalles del libro</h1>
+<hr />
+@if (detalles == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    @foreach (var detalle in detalles)
+    {
+        @if (string.Equals(id, detalle.Id))
+        {
+            <img style="float: left; margin: 0 15px 0 0;" src="@detalle.url" width="200" height="320" />
+            <p><b>Título:</b> @detalle.Titulo</p>
+            <p><b>Autor:</b> @detalle.Autor</p>
+            <p><b>Editorial:</b> @detalle.Editorial</p>
+            <p><b>Número de páginas:</b> @detalle.NumeroPaginas</p>
+            <p><b>Año de publicación:</b> @detalle.AnioPublicacion</p>
+            <p><b>Reseña:</b></p>
+            <p class="text-justify">@detalle.Resenia</p>
+        }
+    }
+}
+
+<br />
+<a class="btn btn-primary" href="lista">Regresar</a>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private ListaDetalleLibros[] detalles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        detalles = await Http.GetFromJsonAsync<ListaDetalleLibros[]>("sample-data/listaDetalleLibros.json");
+    }
+
+    public class ListaDetalleLibros
+    {
+        public string Titulo { get; set; }
+
+        public string Autor { get; set; }
+
+        public string Editorial { get; set; }
+
+        public int NumeroPaginas { get; set; }
+
+        public string AnioPublicacion { get; set; }
+
+        public string Resenia { get; set; }
+
+        public string url { get; set; }
+
+        public string Id { get; set; }
+    }
+}

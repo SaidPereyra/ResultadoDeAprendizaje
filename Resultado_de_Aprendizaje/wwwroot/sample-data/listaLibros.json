@@ -1,0 +1,62 @@
+﻿[
+  {
+    "aniopublicacion": "1472",
+    "titulo": "Divina comedia",
+    "autor": "Dante Alighieri",
+    "id": "1"
+  },
+  {
+    "aniopublicacion": "1605",
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "id": "2"
+  },
+  {
+    "aniopublicacion": "1906",
+    "titulo": "La Odisea",
+    "autor": "Homero",
+    "id": "3"
+  },
+  {
+    "aniopublicacion": "1818",
+    "titulo": "Frankenstein",
+    "autor": "Mary Shelley",
+    "id": "4"
+  },
+  {
+    "aniopublicacion": "1603",
+    "titulo": "Hamlet",
+    "autor": "William Shakespeare",
+    "id": "5"
+  },
+  {
+    "aniopublicacion": "1967",
+    "titulo": "Cien Años de Soledad",
+    "autor": "Gabriel García Márquez",
+    "id": "6"
+  },
+  {
+    "aniopublicacion": "1597",
+    "titulo": "Romeo y Julieta",
+    "autor": "William Shakespeare",
+    "id": "7"
+  },
+  {
+    "aniopublicacion": "1967",
+    "titulo": "Cienx",
+    "autor": "Gabrielx",
+    "id": "8"
+  },
+  {
+    "aniopublicacion": "1851",
+    "titulo": "Moby Dick",
+    "autor": "Herman Melville",
+    "id": "9"
+  },
+  {
+    "aniopublicacion": "2014",
+    "titulo": "El lado oscuro",
+    "autor": "Sally Green",
+    "id": "10"
+  }
+]

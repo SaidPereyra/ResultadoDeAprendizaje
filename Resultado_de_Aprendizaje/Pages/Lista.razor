@@ -1,0 +1,55 @@
+﻿@page "/lista"
+@inject HttpClient Http
+
+<h1>Lista de libros disponibles</h1>
+
+<p>Algunos libros son largos, otros cortos… y son perfectos para descargar o leer en línea, como lo prefieras.</p>
+
+@if (libros == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Año de Publicación</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var libro in libros)
+            {
+            <tr>
+                <td class="text-center text-uppercase">@libro.Titulo</td>
+                <td>@libro.Autor</td>
+                <td>@libro.AnioPublicacion</td>
+                <td><a href="detalle/@libro.id"><span style="color:black" class="oi oi-external-link" aria-hidden="true"></span></a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ListaLibros[] libros;
+
+    protected override async Task OnInitializedAsync()
+    {
+        libros = await Http.GetFromJsonAsync<ListaLibros[]>("sample-data/listaLibros.json");
+    }
+
+    public class ListaLibros
+    {
+        public string Titulo { get; set; }
+
+        public string Autor { get; set; }
+
+        public string AnioPublicacion { get; set; }
+
+        public string id { get; set; }
+    }
+}
