@@ -21,13 +21,13 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var libro in libros)
+            @foreach (var libro in infoLibros)
             {
             <tr>
                 <td>@libro.Titulo</td>
                 <td>@libro.Autor</td>
                 <td>@libro.AnioPublicacion</td>
-                <td><a href="detalle/@libro.id"><span style="color:black" class="oi oi-external-link" aria-hidden="true"></span></a></td>
+                <td><a href="detalle/@libro.Id">Ver información <span style="color:black" class="oi oi-external-link" aria-hidden="true"></span></a></td>
             </tr>
             }
         </tbody>
@@ -37,12 +37,27 @@ else
 @code {
     private ListaLibros[] libros;
 
+    private Info[] libro;
+
+    private List<Info> infoLibros = new List<Info>();
+
     protected override async Task OnInitializedAsync()
     {
-        libros = await Http.GetFromJsonAsync<ListaLibros[]>("sample-data/listaLibros.json");
+        libros = await Http.GetFromJsonAsync<ListaLibros[]>("sample-data/listaLibrosid.json");
+
+        foreach (var id in libros)
+        {
+            libro = await Http.GetFromJsonAsync<Info[]>("sample-data/listaDetalleLibros" + id.Id + ".json");
+            infoLibros.Add(libro[0]);
+        }
     }
 
     public class ListaLibros
+    {
+        public string Id { get; set; }
+    }
+
+    public class Info
     {
         public string Titulo { get; set; }
 
@@ -50,6 +65,6 @@ else
 
         public string AnioPublicacion { get; set; }
 
-        public string id { get; set; }
+        public string Id { get; set; }
     }
 }

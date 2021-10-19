@@ -10,20 +10,14 @@
 }
 else
 {
-    @foreach (var detalle in detalles)
-    {
-        @if (string.Equals(id, detalle.Id))
-        {
-            <img style="float: left; margin: 0 15px 0 0;" src="@detalle.url" width="200" height="320" />
-            <p><b>Título:</b> @detalle.Titulo</p>
-            <p><b>Autor:</b> @detalle.Autor</p>
-            <p><b>Editorial:</b> @detalle.Editorial</p>
-            <p><b>Número de páginas:</b> @detalle.NumeroPaginas</p>
-            <p><b>Año de publicación:</b> @detalle.AnioPublicacion</p>
-            <p><b>Reseña:</b></p>
-            <p class="text-justify">@detalle.Resenia</p>
-        }
-    }
+    <img style="float: left; margin: 0 15px 0 0;" src="@detalles[0].url" width="200" height="320" />
+    <p><b>Título:</b> @detalles[0].Titulo</p>
+    <p><b>Autor:</b> @detalles[0].Autor</p>
+    <p><b>Editorial:</b> @detalles[0].Editorial</p>
+    <p><b>Número de páginas:</b> @detalles[0].NumeroPaginas</p>
+    <p><b>Año de publicación:</b> @detalles[0].AnioPublicacion</p>
+    <p><b>Reseña:</b></p>
+    <p class="text-justify">@detalles[0].Resenia</p>
 }
 
 <br />
@@ -37,7 +31,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        detalles = await Http.GetFromJsonAsync<ListaDetalleLibros[]>("sample-data/listaDetalleLibros.json");
+        detalles = await Http.GetFromJsonAsync<ListaDetalleLibros[]>("sample-data/listaDetalleLibros"+id+".json");
     }
 
     public class ListaDetalleLibros
